@@ -1,0 +1,74 @@
+.main {
+    background-color: #282c34;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+}
+
+.filter {
+    display: flex;
+    flex-display: column;
+}
+
+menu {
+    height: 100%;
+    top: 0;
+    right: 0;
+
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    justify-content: center;
+
+    position: fixed;
+    z-index: 400;
+    list-style: none;
+    padding: 0 30px 0 0;
+}
+
+.filter-item {
+    /*background: #282c34;*/
+    color: aliceblue;
+}
+
+.filter-item label {
+    display: flex;
+    align-items: center;
+
+    background: #282c34;
+    padding: 10px;
+
+    border: 2px solid transparent;
+    border-radius: 5px;
+
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.filter-item input {
+    display: none;
+}
+
+.filter-item input:checked ~ label {
+    border: 2px solid rgb(46, 95, 255);
+
+}
+
+.mycluster {
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    font-size: 24px;
+}
+
+.custom-marker-cluster{
+    background: #ffffff;
+    border: 7px solid #282c34;
+    border-radius: 50%;
+    color: #000000;
+    height: 15px;
+    line-height: 37px;
+    text-align: center;
+    width: 17px;
+}

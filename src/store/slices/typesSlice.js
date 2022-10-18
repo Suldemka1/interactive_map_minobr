@@ -43,7 +43,6 @@ export const typesSlice = createSlice({
             state.kvant = false
             state.itcube = false
             state.mastery = false
-            console.log(state)
 
             state[action.payload] = !state[action.payload]
         }

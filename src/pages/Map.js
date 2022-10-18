@@ -58,6 +58,7 @@ const Map = () => {
 
     useEffect(() => {
         filteredGroup()
+        console.log('render')
     }, [state.podved, state.spo, state.school, state.dop, state.dou])
 
     const filterOrgByType = () => {
@@ -82,7 +83,6 @@ const Map = () => {
 
     const renderAllOrganizations = filterOrgByType().map((item) => <CustomPopup key={item.id} data={item}/>)
 
-    // eslint-disable-next-line
     const createClusterCustomIcon = function (cluster) {
         return L.divIcon({
             html: `<span>${cluster.getChildCount()}</span>`,
@@ -99,6 +99,7 @@ const Map = () => {
             scrollWheelZoom={true}
             doubleClickZoom={false}
             bounds={mapData.polygons}
+            attributionControl={false}
         >
             <TileLayer
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

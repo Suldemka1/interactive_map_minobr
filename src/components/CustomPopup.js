@@ -22,9 +22,13 @@ const CustomPopup = (params) => {
 
                             {params.data.trosta === true &&
                                 <div className="feature"><img src="/trosta.png"/>ТОЧКА РОСТА</div>}
-                            {params.data['cos'] === true && <div className="feature"><img src="/cos.png"/>ЦОС</div>}
+
+                            {params.data['cos'] === true &&
+                                <div className="feature"><img src="/cos.png"/>ЦОС</div>}
+
                             {params.data.itcube === true &&
                                 <div className="feature"><img src="/itcube.png"/>IT-cube</div>}
+
                             {params.data.kvant === true &&
                                 <div className="feature"><img src="/kvant.png"/>Кванториум</div>}
 
@@ -36,7 +40,8 @@ const CustomPopup = (params) => {
                                             <summary>В это учебном заведении есть мастерские:</summary>
                                             <div>
                                                 {
-                                                    params.data.mastery.map((item) => <p>{item.name}</p>)
+                                                    params.data.mastery.map((item, index) => <p
+                                                        key={index}>{item.name}</p>)
                                                 }
                                             </div>
                                         </details>
@@ -46,6 +51,20 @@ const CustomPopup = (params) => {
                             </div>
                         </div>
 
+                        <div className="activity">
+                            {
+                                params.data.activity.length > 1
+                                    ?
+                                    <details>
+                                        <summary>Деятельность</summary>
+                                        <div>
+                                            {params.data.activity.map((item) => <p>{item.item}</p>)}
+                                        </div>
+                                    </details>
+                                    :
+                                    null
+                            }
+                        </div>
                         {
                             params.data.hot_meals
                                 ?

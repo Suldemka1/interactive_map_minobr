@@ -17,57 +17,67 @@ const CustomPopup = (params) => {
                 <div>
                     {params.data.trosta === true && <p>ТОЧКА РОСТА</p>}
                     {params.data['cos'] === true && <p>ЦОС</p>}
-                </div>
-
-                {
-                    params.data.hot_meals
-                        ?
-                        <details>
-                            <summary>Информация об организации горячего питания</summary>
-                            <div>
-                                {params.data.hot_meals}
-                            </div>
-                        </details>
-                        :
-                        <div>Информация по организации горячего питания отсутсвует</div>
-                }
-
-                <details>
-                    <summary>Контактные данные</summary>
+                    {params.data.itcube === true && <p>IT-cube</p>}
+                    {params.data.kvant === true && <p>Кванториум</p>}
                     <div>
-                        <div>
-                            {params.data.address.code} {params.data.address.region} {params.data.address.street} д.
-                            {params.data.address.number}
-                        </div>
-                        <div>
-                            <p>Адрес электронной почты: </p>
-                            <p>{params.data.contacts.email}</p>
-                        </div>
-
-                        <div className="phones">
-                            {
-                                params.data.contacts.phones.map((item) => {
-                                    if (item.phone.length > 3)
-                                        return <div key={item.phone}>
-                                            <p>Телефон:</p>
-                                            <p>{item.phone}</p>
-                                        </div>
-                                })
-                            }
-                        </div>
-
-                        <div>
-                            {
-                                params.data.web_site.length > 6 && <a href={params.data.web_site}>
-                                    Перейти на сайт
-                                </a>
-                            }
-                        </div>
+                        <p>В это учебном заведении есть:</p>
+                        {
+                            params.data.mastery != null ?
+                                params.data.mastery.map((item) => <p>{item.name}</p>)
+                                :
+                                <p>asd</p>
+                        }
                     </div>
-                </details>
+                </div>
+                    {
+                        params.data.hot_meals
+                            ?
+                            <details>
+                                <summary>Информация об организации горячего питания</summary>
+                                <div>
+                                    {params.data.hot_meals}
+                                </div>
+                            </details>
+                            :
+                            <div>Информация об организации горячего питания отсутсвует</div>
+                    }
+
+                    <details>
+                        <summary>Контактные данные</summary>
+                        <div>
+                            <div>
+                                {params.data.address.code} {params.data.address.region} {params.data.address.street} д.
+                                {params.data.address.number}
+                            </div>
+                            <div>
+                                <p>Адрес электронной почты: </p>
+                                <p>{params.data.contacts.email}</p>
+                            </div>
+
+                            <div className="phones">
+                                {
+                                    params.data.contacts.phones.map((item) => {
+                                        if (item.phone.length > 3)
+                                            return <div key={item.phone}>
+                                                <p>Телефон:</p>
+                                                <p>{item.phone}</p>
+                                            </div>
+                                    })
+                                }
+                            </div>
+
+                            <div>
+                                {
+                                    params.data.web_site.length > 6 && <a href={params.data.web_site}>
+                                        Перейти на сайт
+                                    </a>
+                                }
+                            </div>
+                        </div>
+                    </details>
             </Popup>
         </Marker>
-    );
+);
 };
 
 export default CustomPopup;

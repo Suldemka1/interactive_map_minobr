@@ -5,9 +5,8 @@
     display: flex;
 }
 
-.filter {
-    display: flex;
-    flex-display: column;
+summary {
+    cursor: pointer;
 }
 
 menu {
@@ -25,6 +24,41 @@ menu {
     z-index: 400;
     list-style: none;
     padding: 0 30px 0 0;
+}
+
+.card {
+    font-size: 17px;
+}
+
+.header {
+    margin: 20px 0 20px 0;
+}
+
+.header .org-name {
+    font-weight: 700;
+
+}
+
+.features {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.feature {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.feature img {
+    width: auto;
+    height: 40px;
+}
+
+.filter {
+    display: flex;
+    flex-direction: column;
 }
 
 .filter-item {
@@ -55,6 +89,60 @@ menu {
 
 }
 
+.contacts {
+
+}
+
+.contacts .address {
+    margin: 10px 0 10px 0;
+}
+
+.contacts .email p {
+    padding: 0;
+    margin: 0;
+}
+
+.contacts .email {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+}
+
+.contacts .phones {
+    margin: 10px 0 10px 0;
+}
+
+.contacts .phones .phone {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+
+
+}
+
+.contacts .phones .phone p {
+    padding: 0;
+    margin: 0;
+}
+
+.contacts .website {
+    text-align: center;
+    margin: 10px 0 0 0;
+}
+
+.contacts .website a {
+    text-decoration: none;
+
+    border: 1px solid black;
+    border-radius: 4px;
+
+    font-weight: 500;
+
+    color: white;
+    background: #282c34;
+    padding: 5px;
+}
+
 .mycluster {
     width: 20px;
     height: 20px;
@@ -71,4 +159,8 @@ menu {
     line-height: 37px;
     text-align: center;
     width: 17px;
+}
+
+.hot-meals {
+    font-size: 12px;
 }

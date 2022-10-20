@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import {MapContainer, TileLayer} from "react-leaflet";
 import {useLoaderData} from "react-router-dom";
 import MarkerClusterGroup from "react-leaflet-cluster";
-import L, { MarkerCluster } from "leaflet";
+import L from "leaflet";
 import Polygons from "../components/polygons";
 import CustomPopup from "../components/CustomPopup";
 import Controls from "../components/controls";
@@ -14,16 +14,18 @@ const Map = () => {
     const mapData = useLoaderData()
     const state = useSelector((state) => state.types)
 
+    const {podved, spo, school, dop, dou, trosta, cos, itcube, kvant, mastery} = state
+
     const filteredGroup = () => {
         let regex = []
 
-        if (state.podved) regex.push('podved')
-        if (state.spo) regex.push('spo')
-        if (state.school) regex.push('school')
-        if (state.dop) regex.push('dop')
-        if (state.dou) regex.push('dou')
+        if (podved) regex.push('podved')
+        if (spo) regex.push('spo')
+        if (school) regex.push('school')
+        if (dop) regex.push('dop')
+        if (dou) regex.push('dou')
 
-        if (!state.school && !state.spo && !state.dop && !state.podved && !state.dou && !state.trosta && !state['cos'] && !state.itcube && !state.kvant && state.mastery != null) {
+        if (!school && !spo && !dop && !podved && !dou && !trosta && !cos && !itcube && !kvant && mastery != null) {
             regex.push('\o')
             regex = new RegExp(regex).exec()
             return regex
@@ -37,19 +39,19 @@ const Map = () => {
     const filteredGroupByProps = () => {
         const props = []
 
-        if (state.trosta) {
+        if (trosta) {
             props.push('trosta')
         }
-        if (state['cos']) {
+        if (cos) {
             props.push('cos')
         }
-        if (state.kvant) {
+        if (kvant) {
             props.push('kvant')
         }
-        if (state.itcube) {
+        if (itcube) {
             props.push('itcube')
         }
-        if (state.mastery) {
+        if (mastery) {
             props.push('mastery')
         }
 
@@ -58,13 +60,12 @@ const Map = () => {
 
     useEffect(() => {
         filteredGroup()
-        console.log('render')
-    }, [state.podved, state.spo, state.school, state.dop, state.dou])
+    }, [podved, spo, school, dop, dou])
 
     const filterOrgByType = () => {
         let result = []
 
-        if (state.podved || state.spo || state.school || state.dop || state.dou) {
+        if (podved || spo || school || dop || dou) {
             result = mapData.organizations.filter((item) => item.type.match(filteredGroup()))
             return result
         } else {
@@ -126,7 +127,7 @@ const Map = () => {
                 {renderAllOrganizations}
             </MarkerClusterGroup>
 
-            <Polygons data={mapData.polygons}/>
+            <Polygons/>
         </MapContainer>
     )
 };
@@ -139,10 +140,6 @@ const mapLoader = async () => {
         organizations: [],
         polygons: null
     }
-
-    const polygons = await fetch('http://95.167.178.158:3000/api/polygons')
-        .then(data => data.json())
-    mapdata.polygons = polygons
 
     const organizations = await fetch('http://95.167.178.158:3000/api/datalist')
         .then(data => data.json())

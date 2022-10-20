@@ -89,8 +89,12 @@ menu {
 
 }
 
-.contacts {
+.activity {
+    font-size: 14px;
+}
 
+.contacts {
+    font-size: 14px;
 }
 
 .contacts .address {
@@ -116,8 +120,6 @@ menu {
     display: flex;
     flex-wrap: wrap;
     gap: 7px;
-
-
 }
 
 .contacts .phones .phone p {
@@ -163,4 +165,34 @@ menu {
 
 .hot-meals {
     font-size: 12px;
+}
+
+.programm {
+
+}
+
+.programm-list {
+    font-size: 12px;
+    display: flex;
+    flex-direction: column;
+}
+
+.programm-item {
+    padding: 0;
+    margin: 0;
+}
+
+.programm-name p {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.programm-age {
+    display: flex;
+    gap: 10px;
+}
+
+.programm-age p {
+    margin: 0 !important;
+    padding: 0 !important;
 }

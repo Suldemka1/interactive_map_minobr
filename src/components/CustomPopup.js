@@ -34,13 +34,13 @@ const CustomPopup = (params) => {
 
                             <div>
                                 {
-                                    params.data.mastery != null
+                                    params.data?.mastery != null
                                         ?
                                         <details>
                                             <summary>В это учебном заведении есть мастерские:</summary>
                                             <div>
                                                 {
-                                                    params.data.mastery.map((item, index) => <p
+                                                    params.data?.mastery?.map((item, index) => <p
                                                         key={index}>{item.name}</p>)
                                                 }
                                             </div>
@@ -51,14 +51,35 @@ const CustomPopup = (params) => {
                             </div>
                         </div>
 
-                        <div className="activity">
+                        <div className="programm">
+                            {
+                                params.data.programm.length > 1
+                                    ?
+                                    <details>
+                                        <summary>Программы обучения</summary>
+                                        <div className="programm-list">
+                                            {
+                                                params.data.programm.map((item, index) =>
+                                                    <div key={index} className="programm-item">
+                                                        <div className="programm-name"><p>{item.name} ({item.age})</p></div>
+                                                        <div className="programm-age"><p></p></div>
+                                                    </div>)
+                                            }
+                                        </div>
+                                    </details>
+                                    :
+                                    null
+                            }
+                        </div>
+
+                        <div>
                             {
                                 params.data.activity.length > 1
                                     ?
                                     <details>
                                         <summary>Деятельность</summary>
-                                        <div>
-                                            {params.data.activity.map((item) => <p>{item.item}</p>)}
+                                        <div className="activity">
+                                            {params.data.activity.map((item, index) => <p key={index}>{item.item}</p>)}
                                         </div>
                                     </details>
                                     :

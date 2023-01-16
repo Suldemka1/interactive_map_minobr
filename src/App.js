@@ -1,5 +1,4 @@
 import React from 'react';
-import './styles/App.css';
 import {createBrowserRouter, createRoutesFromElements, Route, RouterProvider} from "react-router-dom";
 import {Map, mapLoader} from "./pages/Map";
 import Administration from "./pages/Administration";

@@ -1,7 +1,9 @@
 import React from 'react';
-import '../styles/App.css'
-import {useDispatch, useSelector} from "react-redux";
-import {setProps, setState, getState} from "../store/slices/typesSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { setProps, setState, getState } from "../store/slices/typesSlice";
+import { setIsOpen } from '../store/slices/mobileMenuSlice';
+import { GiHamburgerMenu } from 'react-icons/gi'
+import {CgClose} from 'react-icons/cg'
 
 const items = [
     {
@@ -60,36 +62,56 @@ const props = [
 
 const Controls = () => {
     const types = useSelector((state) => state.types)
+    const mobile = useSelector((state) => state.mobile)
     const dispatch = useDispatch()
 
     return (
         <div className="filter">
-            <menu>
-                {
-                    items.map(item =>
-                        <li key={item.id} className="filter-item">
-                            <input id={item.name} type={'checkbox'} className=""
-                                   checked={types[item.name]}
-                                   onChange={() => types[item.name]}
-                                   onClick={() => dispatch(setState(item.name))}/>
-                            <label htmlFor={item.name}>
-                                <p className="">{item.title}</p>
-                            </label>
-                        </li>)}
+            {
+                mobile.isOpen === false ? <GiHamburgerMenu onClick={() => dispatch(setIsOpen())} style={{ position: "absolute", right: 0, zIndex: 500, cursor: "pointer", padding: "30px 30px 0 0" }} size={40} />
+                    :
+                    <CgClose onClick={() => dispatch(setIsOpen())} style={{ position: "absolute", right: 0, zIndex: 500, cursor: "pointer", padding: "30px 30px 0 0" }} size={40} />
+            }
+
+
+            <ul className='filter-menu'>
 
                 {
-                    props.map(item =>
-                        <li key={item.id} className="filter-item">
-                            <input id={item.name} type={'checkbox'} className=""
-                                   checked={types[item.name]}
-                                   onChange={() => types[item.name]}
-                                   onClick={() => dispatch(setProps(item.name))}/>
-                            <label htmlFor={item.name}>
-                                <p className="">{item.title}</p>
-                            </label>
-                        </li>)
+                    mobile.isOpen && <>
+                        {
+                            items.map(item =>
+                                <li key={item.id} className="filter-item">
+                                    <input id={item.name} type={'checkbox'} className=""
+                                        checked={types[item.name]}
+                                        onChange={() => types[item.name]}
+                                        onClick={() => dispatch(setState(item.name))} />
+                                    <label htmlFor={item.name}>
+                                        <p className="">{item.title}</p>
+                                    </label>
+                                </li>)
+
+                        }
+
+                        {
+                            mobile.isOpen && <>
+                                {
+                                    props.map(item =>
+                                        <li key={item.id} className="filter-item">
+                                            <input id={item.name} type={'checkbox'} className=""
+                                                checked={types[item.name]}
+                                                onChange={() => types[item.name]}
+                                                onClick={() => dispatch(setProps(item.name))} />
+                                            <label htmlFor={item.name}>
+                                                <p className="">{item.title}</p>
+                                            </label>
+                                        </li>)
+                                }
+
+                            </>
+                        }
+                    </>
                 }
-            </menu>
+            </ul>
         </div>
     );
 };

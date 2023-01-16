@@ -1,20 +1,24 @@
-import React, {useEffect} from 'react';
-import {MapContainer, TileLayer} from "react-leaflet";
-import {useLoaderData} from "react-router-dom";
+import React, { useEffect } from 'react';
+import { AttributionControl, LayersControl, MapContainer, Pane, TileLayer } from "react-leaflet";
+import { useLoaderData } from "react-router-dom";
 import MarkerClusterGroup from "react-leaflet-cluster";
 import L from "leaflet";
 import Polygons from "../components/polygons";
 import CustomPopup from "../components/CustomPopup";
-import Controls from "../components/controls";
-import {useSelector} from "react-redux";
+import Controls from "../components/Controls";
+import { useSelector } from "react-redux";
 import "leaflet/dist/leaflet.css";
-import "../styles/App.css";
+import Header from '../components/Header';
+import Footer from '../components/Footer';
+import InfoPopup from '../components/InfoPopup';
 
 const Map = () => {
+
+    const details = useSelector((state) => state.details)
     const mapData = useLoaderData()
     const state = useSelector((state) => state.types)
 
-    const {podved, spo, school, dop, dou, trosta, cos, itcube, kvant, mastery} = state
+    const { podved, spo, school, dop, dou, trosta, cos, itcube, kvant, mastery } = state
 
     const filteredGroup = () => {
         let regex = []
@@ -82,7 +86,7 @@ const Map = () => {
         }
     }
 
-    const renderAllOrganizations = filterOrgByType().map((item) => <CustomPopup key={item.id} data={item}/>)
+    const renderAllOrganizations = filterOrgByType().map((item) => <CustomPopup key={item.id} data={item} />)
 
     const createClusterCustomIcon = function (cluster) {
         return L.divIcon({
@@ -93,42 +97,54 @@ const Map = () => {
     }
 
     return (
-        <MapContainer
-            className="main"
-            center={[51.9, 93.4]}
-            zoom={6}
-            scrollWheelZoom={true}
-            doubleClickZoom={false}
-            bounds={mapData.polygons}
-            attributionControl={false}
-        >
-            <TileLayer
-                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-                opacity={1}
-            />
+        <>
+            <Header />
+            <div className='container'>
 
-            <Controls/>
+                <MapContainer
+                    className="main"
+                    center={[51.9, 93.4]}
+                    zoom={6}
+                    scrollWheelZoom={true}
+                    doubleClickZoom={false}
+                    bounds={mapData.polygons}
+                    attributionControl={false}
+                    zoomControl={false}
+                    dragging={!details.isOpen}
+                >
+                    <TileLayer
+                        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                        attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                        opacity={1}
+                    />
 
-            <MarkerClusterGroup
-                iconCreateFunction={createClusterCustomIcon}
-                // maxClusterRadius={50}
-                spiderfyOnMaxZoom={true}
-                polygonOptions={{
-                    fillColor: '#ffffff',
-                    color: '#282c34',
-                    weight: 1,
-                    opacity: 1,
-                    fillOpacity: 0.8,
-                }}
-                showCoverageOnHover={true}
-                chunkedLoading
-            >
-                {renderAllOrganizations}
-            </MarkerClusterGroup>
+                    <Controls />
+                     {details.isOpen &&<InfoPopup name="Title" />}
 
-            <Polygons/>
-        </MapContainer>
+                    <MarkerClusterGroup
+                        iconCreateFunction={createClusterCustomIcon}
+                        // maxClusterRadius={50}
+                        spiderfyOnMaxZoom={true}
+                        polygonOptions={{
+                            fillColor: '#ffffff',
+                            color: '#282c34',
+                            weight: 1,
+                            opacity: 1,
+                            fillOpacity: 0.8,
+                        }}
+                        showCoverageOnHover={true}
+                        chunkedLoading
+                    >
+                        {renderAllOrganizations}
+                    </MarkerClusterGroup>
+
+                    <Polygons />
+                </MapContainer>
+            </div>
+            <Footer />
+
+        </>
+
     )
 };
 
@@ -148,4 +164,4 @@ const mapLoader = async () => {
     return mapdata
 }
 
-export {Map, mapLoader} ;
+export { Map, mapLoader };

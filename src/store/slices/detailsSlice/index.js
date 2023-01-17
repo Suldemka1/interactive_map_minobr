@@ -67,12 +67,17 @@ const detailsSlice = createSlice({
   reducers: {
     setData: (state, action) => {
       state.isOpen = !state.isOpen
+
+      if (state.isOpen === true) {
+        document.body.style.overflowY = "hidden";
+      } else {
+        document.body.style.overflowY = "unset";
+      }
     }
   },
   extraReducers: {
     [fetchData.fulfilled]: (state, action) => {
       state.data = action.payload
-      console.log(action.payload)
     }
   }
 })

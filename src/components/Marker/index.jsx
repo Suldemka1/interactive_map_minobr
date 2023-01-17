@@ -17,7 +17,6 @@ const ClusterMarker = (params) => {
             click: () => {
                 dispatch(setData())
                 dispatch(fetchData(params.data.id))
-                console.log('marker clicked')
             }
         }}>
         </Marker>

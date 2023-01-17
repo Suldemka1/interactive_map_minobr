@@ -5,15 +5,15 @@ import "./index.scss";
 import { useEffect } from "react";
 import { setIsOpen } from "../../store/slices/mobileMenuSlice";
 
+
+
 const Controls = () => {
   const types = useSelector((state) => state.types);
   const mobile = useSelector((state) => state.mobile);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    mobile.isOpen
-      ? (document.body.style.overflowY = "hidden")
-      : (document.body.style.overflowY = "unset");
+    
   }, [mobile.isOpen]);
 
   return (
@@ -51,9 +51,7 @@ const Controls = () => {
           </li>
         ))}
       </ul>
-      <div className="filter__fade" onClick={() => dispatch(setIsOpen())}>
-
-      </div>
+      <div className="filter__fade" onClick={() => dispatch(setIsOpen())}></div>
     </div>
   );
 };

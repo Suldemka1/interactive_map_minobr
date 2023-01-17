@@ -10,6 +10,12 @@ export const mobileMenuSlice = createSlice({
   reducers: {
     setIsOpen: (state, action) => {
       state.isOpen = !state.isOpen
+
+      if (state.isOpen === true) {
+        document.body.style.overflowY = "hidden";
+      } else {
+        document.body.style.overflowY = "unset";
+      }
     }
   }
 })

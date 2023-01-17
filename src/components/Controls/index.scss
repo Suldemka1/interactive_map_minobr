@@ -1,19 +1,10 @@
-@media (min-width: 768px ) and (max-width: 1100) and (orientation: landscape) {
-  .filter {
-    .filter-menu {
-      column-gap: 5px !important;
-      row-gap: 5px !important;
-      gap: 5px !important;
-      padding: 0 !important;
-    }
-  }
-}
-
 @media (max-width: 767px) {
   .filter {
     .filter-menu {
-      width: 80% !important;
-      gap: 10;
+      width: 70% !important;
+      gap: 7 !important;
+      column-gap: 7px !important;
+      row-gap: 7px !important;
       padding: 0 !important;
 
       .filter-item {
@@ -24,6 +15,15 @@
           padding: 7px !important;
         }
       }
+    }
+  }
+}
+
+@media (max-height: 600px) {
+
+  .filter {
+    .filter-menu {
+      padding: 10px;
     }
   }
 }
@@ -51,7 +51,8 @@
     top: 0;
     right: 0;
     bottom: 0;
-    width: 40%;
+    width: 30%;
+    min-width: 350px;
 
     display: flex;
     flex-direction: column;

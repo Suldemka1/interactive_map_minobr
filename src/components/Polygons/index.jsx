@@ -1,6 +1,6 @@
 import React from 'react';
 import {GeoJSON} from "react-leaflet";
-import polygons from '../data.json'
+import polygons from '../../data.json'
 
 const Polygons = () => {
 

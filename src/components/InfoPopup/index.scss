@@ -1,0 +1,241 @@
+@media (max-width: 767px) {
+  .details {
+    .details__info {
+      width: 80% !important;
+
+      padding: 35px 15px !important;
+
+      .details__info__header {
+        .details__info__header-title {
+          // padding: 0 20px;
+        }
+      }
+
+      .details__info__footer {
+        .contacts {
+          .address {
+            flex-direction: column !important;
+          }
+
+          .email {
+            flex-direction: column !important;
+          }
+        }
+      }
+    }
+  }
+
+  .list {
+    .list-item {
+      width: 100% !important;
+    }
+  }
+}
+
+.details {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 500;
+
+  .details__fade {
+    width: 100%;
+    height: 100%;
+    background-color: #000000;
+    opacity: 0.4;
+    z-index: 500;
+  }
+
+  .details__close-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: white;
+
+    padding: 20px;
+  }
+
+  .details__info {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 50%;
+    overflow-y: auto;
+    color: #ffffff;
+    font-size: 17px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 20px;
+    z-index: 500;
+    background: #282c34;
+    cursor: pointer;
+
+    padding: 30px 30px;
+    animation: slidein-left 1s forwards;
+
+    .details__info__header {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+
+      .details__info__header-title {
+        color: #ffffff;
+        font-size: 23px;
+        font-weight: 500;
+      }
+
+      .mastery {
+        border: 0px white solid;
+        border-radius: 5px;
+        padding: 10px 20px;
+        box-shadow: 0 0 3px 2px white;
+      }
+    }
+
+    .details__info__body {
+      .details__info__body-hot-meals {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        text-align: justify;
+        font-size: 17px;
+      }
+
+      .details__info__body-activity {}
+    }
+
+    .details__info__footer {
+      padding: 30px 0;
+
+      .contacts {
+        width: fit-content;
+
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        font-size: 17px;
+
+        border: 0px white solid;
+        border-radius: 5px;
+        padding: 10px 20px;
+        box-shadow: 0 0 3px 2px white;
+
+        .address {
+          display: flex;
+
+          gap: 5px;
+        }
+
+        .email {
+          display: flex;
+          gap: 5px;
+        }
+
+        .phones {
+          display: flex;
+          flex-direction: column;
+
+          .phone {
+            display: flex;
+            gap: 5px;
+          }
+        }
+
+        .website {
+          width: 150px;
+
+          font-size: 17px;
+          font-weight: 400;
+
+          text-align: center;
+
+          border: 1px white solid;
+          border-radius: 5px;
+          padding: 5px 10px;
+
+          color: #ffffff;
+
+          background-color: #282c34;
+          text-decoration: none;
+
+          &:hover {
+            color: #282c34;
+            background-color: #ffffff;
+          }
+        }
+      }
+    }
+  }
+}
+
+.list {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  flex-wrap: wrap;
+  width: fit-content;
+
+  padding: 10px 0;
+
+  .list-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: fit-content;
+    height: fit-content;
+    background: white;
+    color: #282c34;
+
+    border: 2px white solid;
+    border-radius: 5px;
+
+    padding: 10px;
+
+    p {
+      font-size: 17px;
+      font-weight: 700;
+    }
+
+    img {
+      height: 40px;
+    }
+  }
+}
+
+.programm__list-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+
+  .programm__list-item__name {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    text-align: start;
+
+    p {
+      font-size: 17px;
+    }
+  }
+
+  .programm__list-item__age {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    text-align: start;
+
+    p {
+      font-size: 13px;
+    }
+  }
+}

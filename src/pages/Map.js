@@ -1,16 +1,16 @@
 import React, { useEffect } from 'react';
-import { AttributionControl, LayersControl, MapContainer, Pane, TileLayer } from "react-leaflet";
+import { MapContainer, TileLayer } from "react-leaflet";
 import { useLoaderData } from "react-router-dom";
 import MarkerClusterGroup from "react-leaflet-cluster";
-import L from "leaflet";
-import Polygons from "../components/polygons";
-import CustomPopup from "../components/CustomPopup";
+import Polygons from "../components/Polygons";
+import ClusterMarker from "../components/Marker";
 import Controls from "../components/Controls";
 import { useSelector } from "react-redux";
 import "leaflet/dist/leaflet.css";
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import InfoPopup from '../components/InfoPopup';
+import ClusterIcon from '../components/ClusterIcon';
 
 const Map = () => {
 
@@ -87,21 +87,13 @@ const Map = () => {
         }
     }
 
-    const renderAllOrganizations = filterOrgByType().map((item) => <CustomPopup key={item.id} data={item} />)
-
-    const createClusterCustomIcon = function (cluster) {
-        return L.divIcon({
-            html: `<span>${cluster.getChildCount()}</span>`,
-            className: 'custom-marker-cluster',
-            iconSize: L.point(33, 33, true),
-        })
-    }
+    const renderAllOrganizations = filterOrgByType().map((item) => <ClusterMarker key={item.id} data={item} />)
 
     return (
         <>
             <Header />
             <div className='container'>
-                {details.isOpen && <InfoPopup name="Title" />}
+                {details.isOpen && <InfoPopup />}
                 {mobile.isOpen && <Controls />}
                 <MapContainer
                     className="main"
@@ -121,13 +113,8 @@ const Map = () => {
                         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                         opacity={1}
                     />
-
-
-
-
                     <MarkerClusterGroup
-                        iconCreateFunction={createClusterCustomIcon}
-                        // maxClusterRadius={50}
+                        iconCreateFunction={ClusterIcon}
                         spiderfyOnMaxZoom={true}
                         polygonOptions={{
                             fillColor: '#ffffff',
@@ -141,30 +128,23 @@ const Map = () => {
                     >
                         {renderAllOrganizations}
                     </MarkerClusterGroup>
-
                     <Polygons />
                 </MapContainer>
             </div>
             <Footer />
-
         </>
-
     )
 };
 
-
 // предзагрузка данных
 const mapLoader = async () => {
-
     const mapdata = {
         organizations: [],
         polygons: null
     }
-
     const organizations = await fetch('http://95.167.178.158:3000/api/datalist')
         .then(data => data.json())
     mapdata.organizations = organizations
-
     return mapdata
 }
 

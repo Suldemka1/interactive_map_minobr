@@ -1,3 +1,5 @@
+import './index.scss'
+
 const Footer = () => {
   return (
     <footer className="">
@@ -15,9 +17,6 @@ const Footer = () => {
               <h3>Все права защищены</h3>
             </div>
           </div>
-
-
-
           <div className="developer">
             
             <a href="https://cit.rtyva.ru">Сайт разработан Центром информационных технологий Республики Тыва</a>

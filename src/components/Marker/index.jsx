@@ -1,15 +1,14 @@
 import React from 'react';
-import { Marker, Popup } from "react-leaflet";
+import { Marker } from "react-leaflet";
 import L from "leaflet";
 import { useDispatch } from 'react-redux';
-import { setData } from '../store/slices/detailsSlice';
-import { fetchData } from '../store/slices/detailsSlice/service';
+import { setData } from '../../store/slices/detailsSlice';
+import { fetchData } from '../../store/slices/detailsSlice/service';
 
-const CustomPopup = (params) => {
+const ClusterMarker = (params) => {
     const dispatch = useDispatch()
-
     const customIcon = new L.Icon({
-        iconUrl: require('../location.png').default,
+        iconUrl: require('../../location.png').default,
         iconSize: new L.Point(50, 50),
     })
 
@@ -25,4 +24,4 @@ const CustomPopup = (params) => {
     );
 };
 
-export default CustomPopup;
+export default ClusterMarker;

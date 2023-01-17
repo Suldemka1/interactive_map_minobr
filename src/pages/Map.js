@@ -15,6 +15,7 @@ import InfoPopup from '../components/InfoPopup';
 const Map = () => {
 
     const details = useSelector((state) => state.details)
+    const mobile = useSelector((state) => state.mobile)
     const mapData = useLoaderData()
     const state = useSelector((state) => state.types)
 
@@ -101,6 +102,7 @@ const Map = () => {
             <Header />
             <div className='container'>
                 {details.isOpen && <InfoPopup name="Title" />}
+                {mobile.isOpen && <Controls />}
                 <MapContainer
                     className="main"
                     center={[51.9, 93.4]}
@@ -120,7 +122,7 @@ const Map = () => {
                         opacity={1}
                     />
 
-                    <Controls />
+
 
 
                     <MarkerClusterGroup

@@ -1,4 +1,16 @@
 @media (max-width: 767px) {
+  .filter {
+    width: 100% !important;
+
+    .filter-menu {
+      .filter-item {
+        label {
+          font-size: 17px !important;
+          padding: 7px !important;
+        }
+      }
+    }
+  }
 
   .details {
     .details__info {
@@ -8,8 +20,6 @@
 
       .details__info__header {
         .details__info__header-title {
-
-
           // padding: 0 20px;
         }
       }
@@ -68,6 +78,11 @@ footer {
   background-color: #282c34;
 }
 
+header {
+  // display: flex;
+  // justify-content: space-between;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
@@ -88,7 +103,8 @@ code {
 
   padding: 20px 0;
 
-  .header__icon {}
+  .header__icon {
+  }
 
   .header__title {
     color: #ffffff;
@@ -98,7 +114,8 @@ code {
   }
 }
 
-.header__menu {}
+.header__menu {
+}
 
 .header__menu-list {
   display: flex;
@@ -135,7 +152,7 @@ summary {
     width: 100%;
     height: 100%;
     background-color: #000000;
-    opacity: .4;
+    opacity: 0.4;
     z-index: 500;
   }
 
@@ -154,27 +171,18 @@ summary {
     left: 0;
     bottom: 0;
     width: 50%;
-
     overflow-y: auto;
-
     color: #ffffff;
     font-size: 17px;
-
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-
     gap: 20px;
-
     z-index: 500;
-
     background: #282c34;
-
     cursor: pointer;
-
     padding: 10px 30px;
-
-    animation: slidein 1s forwards;
+    animation: slidein-left 1s forwards;
 
     .details__info__header {
       display: flex;
@@ -190,7 +198,6 @@ summary {
       .features {
         display: grid;
         grid-template-columns: 1fr 1fr;
-
       }
     }
 
@@ -201,7 +208,6 @@ summary {
     }
 
     .details__info__footer {
-
       .contacts {
         display: flex;
         flex-direction: column;
@@ -278,8 +284,13 @@ summary {
   top: 0;
   right: 0;
   bottom: 0;
+  width: 30%;
+  height: 100%;
+  background-color: #282c34;
   display: flex;
   flex-direction: column;
+  z-index: 600;
+  animation: slidein-right 1s forwards;
 
   .filter-menu {
     height: 100%;
@@ -291,7 +302,7 @@ summary {
     justify-content: center;
     z-index: 499;
     list-style: none;
-    padding: 30px 80px 20px 0;
+    padding: 30px 0px 20px 0;
 
     .filter-item {
       background: #282c34;
@@ -314,7 +325,7 @@ summary {
         display: none;
       }
 
-      input:checked~label {
+      input:checked ~ label {
         border: 2px solid rgb(46, 95, 255);
       }
     }
@@ -407,9 +418,19 @@ summary {
   }
 }
 
-@keyframes slidein {
+@keyframes slidein-left {
   0% {
     transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+@keyframes slidein-right {
+  0% {
+    transform: translateX(300%);
   }
 
   100% {

@@ -100,11 +100,13 @@ const Map = () => {
         <>
             <Header />
             <div className='container'>
-
+                {details.isOpen && <InfoPopup name="Title" />}
                 <MapContainer
                     className="main"
                     center={[51.9, 93.4]}
+                    maxBounds={[[54, 99], [49.4, 88]]}
                     zoom={6}
+                    minZoom={6}
                     scrollWheelZoom={true}
                     doubleClickZoom={false}
                     bounds={mapData.polygons}
@@ -119,7 +121,7 @@ const Map = () => {
                     />
 
                     <Controls />
-                     {details.isOpen &&<InfoPopup name="Title" />}
+
 
                     <MarkerClusterGroup
                         iconCreateFunction={createClusterCustomIcon}
